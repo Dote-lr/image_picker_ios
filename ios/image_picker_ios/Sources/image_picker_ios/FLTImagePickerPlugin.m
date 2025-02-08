@@ -120,6 +120,7 @@ typedef NS_ENUM(NSInteger, ImagePickerClassType) { UIImagePickerClassType, PHPic
                               context:(nonnull FLTImagePickerMethodCallContext *)context {
   UIImagePickerController *imagePickerController = [self createImagePickerController];
   imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+  imagePickerController.videoExportPreset = AVAssetExportPresetPassthrough;
   imagePickerController.delegate = self;
   if (context.includeVideo) {
     imagePickerController.mediaTypes = @[ (NSString *)kUTTypeImage, (NSString *)kUTTypeMovie ];
@@ -224,14 +225,15 @@ typedef NS_ENUM(NSInteger, ImagePickerClassType) { UIImagePickerClassType, PHPic
     context.maxImageCount = limit.intValue;
   }
 
-  if (@available(iOS 14, *)) {
-    [self launchPHPickerWithContext:context];
-  } else {
+  // prevent image compression
+  // if (@available(iOS 14, *)) {
+    // [self launchPHPickerWithContext:context];
+  // } else {
     // Camera is ignored for gallery mode, so the value here is arbitrary.
     [self launchUIImagePickerWithSource:[FLTSourceSpecification makeWithType:FLTSourceTypeGallery
                                                                       camera:FLTSourceCameraRear]
                                 context:context];
-  }
+  // }
 }
 
 - (void)pickVideoWithSource:(nonnull FLTSourceSpecification *)source
