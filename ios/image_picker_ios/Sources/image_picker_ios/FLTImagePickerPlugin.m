@@ -259,6 +259,10 @@ typedef NS_ENUM(NSInteger, ImagePickerClassType) { UIImagePickerClassType, PHPic
   ];
   imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
 
+  // https://github.com/flutter/flutter/issues/24954
+  // add this line to disable video compression
+  imagePickerController.videoExportPreset = AVAssetExportPresetPassthrough;
+
   if (maxDurationSeconds) {
     NSTimeInterval max = [maxDurationSeconds doubleValue];
     imagePickerController.videoMaximumDuration = max;
