@@ -254,12 +254,13 @@ typedef NS_ENUM(NSInteger, ImagePickerClassType) { UIImagePickerClassType, PHPic
   imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
   imagePickerController.delegate = self;
   imagePickerController.mediaTypes = @[
-    (NSString *)kUTTypeMovie, (NSString *)kUTTypeAVIMovie, (NSString *)kUTTypeVideo,
-    (NSString *)kUTTypeMPEG4
+    (NSString *)kUTTypeMovie //, (NSString *)kUTTypeAVIMovie, (NSString *)kUTTypeVideo,
+    // (NSString *)kUTTypeMPEG4 // https://github.com/flutter/flutter/issues/24954#issuecomment-1484318717
   ];
+  
   imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
 
-  // https://github.com/flutter/flutter/issues/24954
+  // https://github.com/flutter/flutter/issues/24954#issuecomment-2027932273
   // add this line to disable video compression
   imagePickerController.videoExportPreset = AVAssetExportPresetPassthrough;
 
